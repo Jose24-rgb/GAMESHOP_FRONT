@@ -20,7 +20,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "coverage": "react-scripts test --coverage",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postinstall": "chmod +x ./node_modules/.bin/react-scripts"
   },
   "eslintConfig": {
     "extends": [
