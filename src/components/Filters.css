@@ -1,0 +1,121 @@
+.select-wrapper {
+  position: relative;
+}
+
+.clear-btn {
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 1rem;
+  line-height: 1rem;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.clear-btn:hover {
+  background-color: #bb2d3b;
+}
+
+select.no-arrow {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none !important;
+}
+
+select.form-select:focus {
+  box-shadow: none;
+  border-color: #ced4da;
+  outline: none;
+}
+
+select.form-select:hover {
+  border-color: #86b7fe;
+}
+
+select.form-select {
+  transition: border-color 0.2s ease;
+}
+
+.stock-checkbox-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.stock-checkbox-wrapper .form-check-input {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ced4da !important;
+  background-color: white;
+  transition: border-color 0.2s ease;
+  box-shadow: none !important;
+}
+
+.stock-checkbox-wrapper .form-check-input:hover {
+  border-color: #86b7fe !important;
+}
+
+.stock-checkbox-wrapper .form-check-input:focus {
+  border-color: #ced4da !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+select,
+input[type="checkbox"],
+.clear-btn {
+  cursor: pointer;
+}
+
+select,
+select option {
+  cursor: pointer !important;
+}
+
+input[type="number"]:hover {
+  border-color: #0d6efd;
+  transition: border-color 0.2s ease;
+}
+
+input[type="number"]:focus {
+  border-color: #ced4da;
+  box-shadow: none;
+  outline: none;
+}
+
+.reset-icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reset-icon-btn.rotate {
+  animation: rotateOnce 0.4s ease;
+}
+
+@keyframes rotateOnce {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+

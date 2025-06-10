@@ -1,0 +1,25 @@
+.cart-item {
+    padding: 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .cart-remove-btn {
+    white-space: nowrap;
+    min-width: 90px;
+    text-align: center;
+  }
+  
+  @media (max-width: 576px) {
+    .cart-item {
+      font-size: 0.95rem;
+      padding: 0.75rem;
+    }
+  
+    .cart-remove-btn {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.6rem;
+    }
+  }
+  

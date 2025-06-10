@@ -1,0 +1,193 @@
+.game-card {
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  margin: 0 auto;
+}
+
+.game-card img {
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  object-fit: contain;
+  border-radius: 6px;
+}
+
+.game-card h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.game-card .btn {
+  font-size: 0.95rem;
+}
+
+@media (max-width: 576px) {
+  .game-card {
+    max-width: 95%;
+    margin-bottom: 1.5rem;
+  }
+
+  .game-card .btn {
+    font-size: 1rem;
+  }
+
+  .game-card h5 {
+    font-size: 1.2rem;
+  }
+
+  .game-card img {
+    max-height: 300px;
+  }
+}
+
+@media (min-width: 768px) {
+  .game-card h5 {
+    font-size: 1.3rem;
+  }
+
+  .results-admin-shift {
+    margin-left: 4.5em;
+  }
+}
+
+@media (min-width: 992px) {
+  .game-card h5 {
+    font-size: 1.4rem;
+  }
+
+  .game-card img {
+    max-height: 500px;
+  }
+}
+
+.admin-btn {
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.1;
+  padding: 0 0.5rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 400px) {
+  .admin-btn {
+    width: 100% !important;
+  }
+
+  .admin-btn + .admin-btn {
+    margin-top: 0.5rem;
+    margin-left: 0;
+  }
+}
+
+/* Paginazione */
+.pagination-numbers {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.page-button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.page-button.active {
+  background-color: red;
+  color: white;
+}
+
+.page-button:disabled {
+  background-color: #e0e0e0;
+  cursor: not-allowed;
+}
+
+button.disabled {
+  cursor: not-allowed;
+}
+
+button:disabled {
+  opacity: 0.5;
+}
+
+/* Frecce per la paginazione */
+/* Frecce per la paginazione */
+/* Frecce per la paginazione */
+/* Frecce per la paginazione */
+/* Frecce per la paginazione */
+/* Frecce per la paginazione */
+.btn-paginate {
+  width: 30px;  /* Impostiamo la larghezza uguale a quella dei numeri */
+  height: 30px; /* Impostiamo l'altezza uguale a quella dei numeri */
+  background-color: transparent; /* background trasparente */
+  border: 2px solid transparent;  /* bordo trasparente */
+  border-radius: 50%;  /* arrotondato per creare un cerchio perfetto */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Transizione fluida per hover */
+  visibility: visible; /* Mostra il cerchio di default */
+  margin: 0.5rem; /* Stesso spazio tra i numeri */
+}
+
+/* Colore della freccia di default (nera) */
+.arrow {
+  font-size: 20px;  /* Manteniamo la stessa dimensione della freccia */
+  color: black;
+}
+
+/* Quando passi sopra con il mouse */
+.btn-paginate:hover {
+  background-color: red;  /* Riempie il cerchio con rosso */
+  border-color: red; /* bordo rosso */
+}
+
+.btn-paginate:hover .arrow {
+  color: white;  /* colore della freccia diventa bianco */
+}
+
+/* Quando la freccia è disabilitata (prima o ultima pagina) */
+.btn-paginate:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: transparent;  /* background trasparente */
+  border: 2px solid transparent; /* bordo trasparente per evitare che diventi rettangolare */
+  visibility: hidden; /* Nasconde completamente la freccia disabilitata (e quindi il cerchio) */
+}
+
+.btn-paginate:disabled .arrow {
+  color: transparent; /* freccia trasparente */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  

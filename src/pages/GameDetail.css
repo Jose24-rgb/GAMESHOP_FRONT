@@ -1,0 +1,192 @@
+.game-cover {
+  max-width: 300px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-left: 0;
+  margin-bottom: 1rem !important;
+}
+
+@media (min-width: 768px) {
+  .game-left-col {
+    padding-left: 0 !important;
+  }
+
+  h2 {
+    padding-left: 0;
+    padding-right: 1rem;
+    font-size: 2rem;
+  }
+}
+
+.game-left-col p {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  line-height: 1.3;
+}
+
+.game-left-col .btn {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.game-left-col .btn:hover {
+  transform: translateY(-2px);
+}
+
+.game-left-col .btn + .btn {
+  margin-left: 0.5rem;
+}
+
+.game-left-col .d-flex.mb-3 {
+  margin-bottom: 0.25rem !important;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+.list-group-item {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  padding: 1rem;
+}
+
+/* Responsive card list */
+@media (max-width: 576px) {
+  .list-group-item {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+    border-left: 4px solid #ccc;
+    background-color: #f9f9f9;
+  }
+
+  .list-group-item strong {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .list-group-item small {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  textarea.form-control,
+  .form-select {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    padding-left: 0;
+    margin-top: 1rem;
+  }
+
+  .trailer-wrapper {
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-left-col p {
+    font-size: 0.95rem;
+  }
+
+  .form-control,
+  .form-select {
+    font-size: 0.95rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+}
+
+.game-description {
+  white-space: pre-line;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.card .list-group {
+  border-radius: 0.5rem;
+}
+
+.card .list-group-item {
+  border-bottom: 1px solid #eee;
+}
+
+.card .list-group-item:last-child {
+  border-bottom: none;
+}
+
+.trailer-wrapper {
+  margin-top: 3rem;
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.trailer-wrapper h4 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.ratio iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.ratio {
+  position: relative;
+}
+
+/* 🔧 Miglioramenti UX modifica recensioni */
+.review-actions {
+  float: right;
+  display: flex;
+  gap: 0.5rem;
+}
+
+
+
+.review-actions .btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.85rem;
+}
+
+.editing-review {
+  background-color: #fffbea;
+  border-left: 4px solid #f0ad4e;
+}
+
+textarea.form-control,
+select.form-select {
+  transition: box-shadow 0.2s ease;
+}
+
+textarea.form-control:focus,
+select.form-select:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.list-group-item p {
+  margin-bottom: 0.25rem;
+}
+
+
+

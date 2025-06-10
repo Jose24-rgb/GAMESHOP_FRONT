@@ -1,0 +1,32 @@
+@media (max-width: 576px) {
+  .navbar {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .navbar .nav-item {
+    margin: 0.5rem 0;
+  }
+
+  
+  .navbar .position-relative .position-absolute[role="menu"] {
+    max-width: 90vw;
+    min-width: 180px;
+    right: 0;
+    left: auto;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+
+  .navbar .dropdown-item {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .navbar .position-relative .position-absolute[role="menu"] {
+    max-width: 95vw;
+  }
+}
+
