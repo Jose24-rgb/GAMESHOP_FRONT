@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import api from '../services/axios'; // ✅ usa axios con interceptor
+import api from '../services/axios'; 
 import { useAuth } from '../context/AuthContext';
 
 const Orders = () => {
@@ -10,7 +10,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await api.get(`/orders/${user.id}`); // ✅ token gestito automaticamente
+        const res = await api.get(`/orders/${user.id}`); 
         setOrders(res.data);
       } catch (err) {
         console.error('❌ Errore nel recupero degli ordini:', err);
@@ -19,7 +19,7 @@ const Orders = () => {
       }
     };
 
-    if (user?.id) fetchOrders(); // ✅ token non serve più qui
+    if (user?.id) fetchOrders(); 
   }, [user?.id]);
 
   const getStatusBadge = (status) => {

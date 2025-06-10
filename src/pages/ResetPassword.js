@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import api from '../services/axios'; // usa l'istanza con interceptor
+import api from '../services/axios';
 
 function ResetPassword() {
   const [searchParams] = useSearchParams();

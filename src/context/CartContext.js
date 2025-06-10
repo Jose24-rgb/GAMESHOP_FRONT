@@ -7,7 +7,7 @@ export const CartProvider = ({ children }) => {
   const { user } = useAuth();
   const [cart, setCart] = useState([]);
 
-  // Carica carrello dal localStorage al login
+  
   useEffect(() => {
     if (user?.id) {
       const storedCart = localStorage.getItem(`cart_${user.id}`);
@@ -17,7 +17,7 @@ export const CartProvider = ({ children }) => {
     }
   }, [user]);
 
-  // Salva carrello nel localStorage quando cambia
+
   useEffect(() => {
     if (user?.id) {
       localStorage.setItem(`cart_${user.id}`, JSON.stringify(cart));

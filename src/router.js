@@ -29,7 +29,7 @@ import AdminGameList from './pages/AdminGameList';
 import PrivateRoute from './components/PrivateRoute';
 import AdminRoute from './components/AdminRoute';
 
-// ✅ Wrapper per forzare il remount di Home
+
 function HomeWrapper() {
   const location = useLocation();
   const key = useMemo(() => {
@@ -54,7 +54,7 @@ const router = createBrowserRouter(
       path: '/',
       element: <Layout />,
       children: [
-        { path: '', element: <HomeWrapper /> }, // ✅ Usiamo il wrapper
+        { path: '', element: <HomeWrapper /> }, 
         { path: 'login', element: <Login /> },
         { path: 'register', element: <Register /> },
         { path: 'games/:id', element: <GameDetail /> },

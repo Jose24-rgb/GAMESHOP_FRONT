@@ -23,7 +23,7 @@ const Home = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
-  const [purchasedGames, setPurchasedGames] = useState([]); // ✅
+  const [purchasedGames, setPurchasedGames] = useState([]);
 
   const buildQuery = (obj) => {
     return Object.entries(obj)
@@ -32,14 +32,14 @@ const Home = () => {
       .join('&');
   };
 
-  // ✅ Reset della pagina a 1 se cambia la query o se viene forzato dal navigation state
+ 
   useEffect(() => {
     if (searchQuery || location.state?.resetPage) {
       setCurrentPage(1);
     }
   }, [searchQuery, location.state]);
 
-  // ✅ Pulizia dello stato di navigazione dopo il reset
+
   useEffect(() => {
     if (location.state?.resetPage) {
       navigate(location.pathname, { replace: true, state: {} });

@@ -17,7 +17,7 @@ function Login() {
         password,
       });
 
-      // ✅ FIX: passa user + token nel formato richiesto da AuthContext
+     
       login({
         user: res.data.user,
         token: res.data.token,

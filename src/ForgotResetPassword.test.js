@@ -7,7 +7,7 @@ import api from './services/apis';
 import axios from './services/axios';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
-// ✅ Mock API
+
 jest.mock('./services/apis', () => ({
   post: jest.fn(),
 }));
@@ -16,7 +16,7 @@ jest.mock('./services/axios', () => ({
   post: jest.fn(),
 }));
 
-// ✅ Mock useNavigate
+
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => {
   const actual = jest.requireActual('react-router-dom');
@@ -26,7 +26,7 @@ jest.mock('react-router-dom', () => {
   };
 });
 
-// ✅ Timeout più ampio (ma senza fake timers)
+
 jest.setTimeout(15000);
 
 beforeEach(() => {
@@ -75,7 +75,7 @@ describe('ResetPassword component', () => {
   };
 
   test('mostra errore se manca email/token', () => {
-    renderWithParams(); // senza query param
+    renderWithParams();
     expect(screen.getByText(/link non valido/i)).toBeInTheDocument();
   });
 
@@ -99,7 +99,7 @@ describe('ResetPassword component', () => {
       expect(screen.getByText(/password aggiornata/i)).toBeInTheDocument();
     });
 
-    // Attendi che il redirect venga eseguito (dopo 2s reali)
+    
     await waitFor(() => {
       expect(mockNavigate).toHaveBeenCalledWith('/login');
     }, { timeout: 3000 });

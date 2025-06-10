@@ -1,4 +1,3 @@
-// MOCK ROUTER
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -7,13 +6,13 @@ jest.mock('react-router-dom', () => ({
   useSearchParams: () => [new URLSearchParams(''), jest.fn()],
 }));
 
-// MOCK CONTEXTS E COMPONENTI
+
 jest.mock('./context/AuthContext', () => ({ useAuth: jest.fn() }));
 jest.mock('./context/CartContext', () => ({ useCart: jest.fn() }));
 jest.mock('./services/axios');
 jest.mock('./components/UserMenu', () => () => <div data-testid="mock-user-menu">Mocked UserMenu</div>);
 
-// ORA importiamo i moduli reali
+
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { MemoryRouter, createMemoryRouter, RouterProvider } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -27,9 +26,7 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-//
-// NAVBAR TESTS
-//
+
 describe('Navbar', () => {
   test('renders navbar with cart count and user menu', () => {
     useAuth.mockReturnValue({ user: { username: 'testuser' }, logout: jest.fn() });
@@ -42,22 +39,20 @@ describe('Navbar', () => {
     );
 
     const cartIcons = screen.getAllByLabelText(/vai al carrello/i);
-    expect(cartIcons).toHaveLength(2); // desktop + mobile
+    expect(cartIcons).toHaveLength(2); 
 
     const searchInputs = screen.getAllByPlaceholderText(/cerca gioco/i);
-    expect(searchInputs).toHaveLength(2); // desktop + mobile
+    expect(searchInputs).toHaveLength(2); 
 
     expect(screen.getByText('🎮 GAMESHOP')).toBeInTheDocument();
 
     const userMenus = screen.getAllByTestId('mock-user-menu');
-    expect(userMenus).toHaveLength(2); // desktop + mobile
+    expect(userMenus).toHaveLength(2);
   });
 });
 
 
-//
-// FILTERS TESTS
-//
+
 describe('Filters', () => {
   test('calls onFilterChange when input changes', () => {
     const onFilterChange = jest.fn();
@@ -85,9 +80,7 @@ describe('Filters', () => {
   });
 });
 
-//
-// GAME DETAIL TESTS
-//
+
 describe('GameDetail', () => {
   test('renders loading state, then game info', async () => {
     useAuth.mockReturnValue({ user: { id: '123', isAdmin: false } });

@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     setUser(user);
     setToken(token);
 
-    window.location.href = '/'; // ✅ Vai alla home e ricarica
+    window.location.href = '/';
   };
 
   const logout = () => {
@@ -38,7 +38,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
     setToken(null);
 
-    window.location.href = '/login'; // ✅ Vai alla pagina login e ricarica
+    window.location.href = '/login';
   };
 
   const updateUser = (newData) => {

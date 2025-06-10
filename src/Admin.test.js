@@ -8,7 +8,7 @@ import api from './services/apis';
 import axios from './services/axios';
 import { useAuth } from './context/AuthContext';
 
-// Mock axios e api
+
 jest.mock('./services/axios', () => ({
   get: jest.fn(),
   delete: jest.fn(),
@@ -23,14 +23,14 @@ jest.mock('./services/apis', () => ({
   get: jest.fn()
 }));
 
-// Mock auth context
+
 jest.mock('./context/AuthContext', () => ({
   useAuth: jest.fn()
 }));
 
-// Setup generale
+
 beforeAll(() => {
-  // Silenzia warning React Router v6
+
   jest.spyOn(console, 'warn').mockImplementation((msg) => {
     if (
       msg.includes('React Router Future Flag Warning') ||
@@ -41,7 +41,7 @@ beforeAll(() => {
     console.warn(msg);
   });
 
-  // Mock alert e confirm per jsdom
+
   window.alert = jest.fn();
   window.confirm = jest.fn(() => true);
 });
@@ -94,7 +94,7 @@ describe('AdminGameList component', () => {
 
 describe('AdminCreateGame component', () => {
   test('invia form di creazione', async () => {
-    api.post.mockResolvedValue({}); // <-- CORRETTO
+    api.post.mockResolvedValue({}); 
 
     render(
       <MemoryRouter initialEntries={['/admin/create-game']}>
@@ -116,7 +116,7 @@ describe('AdminCreateGame component', () => {
     await userEvent.click(screen.getByRole('button', { name: /crea gioco/i }));
 
     await waitFor(() => {
-      expect(api.post).toHaveBeenCalled(); // <-- CORRETTO
+      expect(api.post).toHaveBeenCalled(); 
       expect(window.alert).toHaveBeenCalledWith('Gioco creato con successo!');
     });
   });

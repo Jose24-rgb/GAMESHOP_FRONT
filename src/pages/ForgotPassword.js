@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import api from '../services/apis'; // Usa il client centralizzato
-
+import api from '../services/apis';
 function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');

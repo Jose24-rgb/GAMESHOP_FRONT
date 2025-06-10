@@ -86,7 +86,7 @@
   }
 }
 
-/* Paginazione */
+
 .pagination-numbers {
   display: flex;
   gap: 0.5rem;
@@ -124,54 +124,49 @@ button:disabled {
   opacity: 0.5;
 }
 
-/* Frecce per la paginazione */
-/* Frecce per la paginazione */
-/* Frecce per la paginazione */
-/* Frecce per la paginazione */
-/* Frecce per la paginazione */
-/* Frecce per la paginazione */
+
 .btn-paginate {
-  width: 30px;  /* Impostiamo la larghezza uguale a quella dei numeri */
-  height: 30px; /* Impostiamo l'altezza uguale a quella dei numeri */
-  background-color: transparent; /* background trasparente */
-  border: 2px solid transparent;  /* bordo trasparente */
-  border-radius: 50%;  /* arrotondato per creare un cerchio perfetto */
+  width: 30px;  
+  height: 30px; 
+  background-color: transparent;
+  border: 2px solid transparent;  
+  border-radius: 50%;  
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: all 0.3s ease; /* Transizione fluida per hover */
-  visibility: visible; /* Mostra il cerchio di default */
-  margin: 0.5rem; /* Stesso spazio tra i numeri */
+  transition: all 0.3s ease;
+  visibility: visible; 
+  margin: 0.5rem;
 }
 
-/* Colore della freccia di default (nera) */
+
 .arrow {
-  font-size: 20px;  /* Manteniamo la stessa dimensione della freccia */
+  font-size: 20px; 
   color: black;
 }
 
-/* Quando passi sopra con il mouse */
+
 .btn-paginate:hover {
-  background-color: red;  /* Riempie il cerchio con rosso */
-  border-color: red; /* bordo rosso */
+  background-color: red; 
+  border-color: red;
 }
 
 .btn-paginate:hover .arrow {
-  color: white;  /* colore della freccia diventa bianco */
+  color: white;  
 }
 
-/* Quando la freccia è disabilitata (prima o ultima pagina) */
+
 .btn-paginate:disabled {
   cursor: not-allowed;
   opacity: 0.5;
-  background-color: transparent;  /* background trasparente */
-  border: 2px solid transparent; /* bordo trasparente per evitare che diventi rettangolare */
-  visibility: hidden; /* Nasconde completamente la freccia disabilitata (e quindi il cerchio) */
+  background-color: transparent;  
+  border: 2px solid transparent;
+  visibility: hidden;
 }
 
 .btn-paginate:disabled .arrow {
-  color: transparent; /* freccia trasparente */
+  color: transparent; 
 }
 
 

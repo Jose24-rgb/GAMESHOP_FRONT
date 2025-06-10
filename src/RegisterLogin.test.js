@@ -7,17 +7,17 @@ import { AuthProvider } from './context/AuthContext';
 import '@testing-library/jest-dom';
 import axios from 'axios';
 
-// ✅ Mock di axios
+
 jest.mock('axios');
 
-// ✅ Mock di useNavigate
+
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockNavigate,
 }));
 
-// ✅ Funzione per render Register con Router
+
 function renderWithRouter(ui, route = '/register') {
   const router = createMemoryRouter(
     [
@@ -38,7 +38,7 @@ function renderWithRouter(ui, route = '/register') {
   return render(<RouterProvider router={router} />);
 }
 
-// ✅ Funzione per render Login con Router + AuthProvider
+
 function renderWithProviders(ui, route = '/login') {
   const router = createMemoryRouter(
     [
@@ -59,7 +59,7 @@ function renderWithProviders(ui, route = '/login') {
   return render(<RouterProvider router={router} />);
 }
 
-// ✅ Mock di alert globale
+
 beforeAll(() => {
   jest.spyOn(window, 'alert').mockImplementation(() => {});
 });
@@ -68,9 +68,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-//
-// 🔽 Test Register
-//
+
 describe('Register component', () => {
   test('renderizza i campi richiesti', () => {
     renderWithRouter(<Register />);
@@ -121,9 +119,7 @@ describe('Register component', () => {
   });
 });
 
-//
-// 🔽 Test Login
-//
+
 describe('Login component', () => {
   test('rende i campi email, password e il pulsante login', () => {
     renderWithProviders(<Login />);

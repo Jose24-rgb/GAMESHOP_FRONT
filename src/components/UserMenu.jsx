@@ -25,7 +25,7 @@ const UserMenu = ({ avatarLetter, menuOpen, setMenuOpen, user, handleLogout, id,
     if (user?.profilePic) {
       return (
         <img
-          src={`http://localhost:5000${user.profilePic}?t=${Date.now()}`} // ⬅️ forza aggiornamento cache
+          src={`http://localhost:5000${user.profilePic}?t=${Date.now()}`}
           alt="Profilo"
           style={{
             width: '40px',

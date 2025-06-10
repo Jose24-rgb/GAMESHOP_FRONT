@@ -14,7 +14,7 @@ const Config = () => {
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [message, setMessage] = useState('');
-  const fileInputRef = useRef(null); // ref per il file input
+  const fileInputRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,7 +55,7 @@ const Config = () => {
       updateUser(res.data.user);
       setMessage('✅ Profilo aggiornato con successo!');
 
-      // Reset dei campi
+      
       setImageSrc('');
       setCrop({ x: 0, y: 0 });
       setZoom(1);
@@ -91,7 +91,7 @@ const Config = () => {
             className="form-control"
             accept="image/*"
             onChange={handleFileChange}
-            ref={fileInputRef} // applica ref per poterlo resettare
+            ref={fileInputRef}
           />
         </div>
 

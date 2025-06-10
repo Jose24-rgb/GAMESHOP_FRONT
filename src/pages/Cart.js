@@ -1,6 +1,6 @@
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
-import api from '../services/apis'; // ✅ usa l'istanza configurata
+import api from '../services/apis';
 import { useAuth } from '../context/AuthContext';
 import './Cart.css';
 

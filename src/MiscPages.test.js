@@ -6,12 +6,12 @@ import VerifyEmail from './pages/VerifyEmail';
 import * as CartContext from './context/CartContext';
 import api from './services/apis';
 
-// Mock API
+
 jest.mock('./services/apis', () => ({
   get: jest.fn(),
 }));
 
-// Mock useCart in modo sicuro prima di ogni test
+
 beforeEach(() => {
   jest.spyOn(CartContext, 'useCart').mockReturnValue({
     clearCart: jest.fn(),

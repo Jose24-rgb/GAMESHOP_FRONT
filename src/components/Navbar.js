@@ -1,14 +1,14 @@
 import { Link, useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { useCart } from '../context/CartContext'; // ✅ Aggiunto
+import { useCart } from '../context/CartContext';
 import { useState, useEffect } from 'react';
 import UserMenu from '../components/UserMenu';
 import './Navbar.css';
 
 const Navbar = () => {
   const { user, logout } = useAuth();
-  const { cart } = useCart(); // ✅ Ottieni il carrello
-  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0); // ✅ Calcola il totale
+  const { cart } = useCart();
+  const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -73,7 +73,7 @@ const Navbar = () => {
           localStorage.removeItem('filters');
           navigate('/', {
             replace: true,
-            state: { resetPage: true } // ✅ forza reset pagina a 1
+            state: { resetPage: true }
           });
         }}
       >

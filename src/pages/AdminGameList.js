@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import api from '../services/axios'; // <-- usa il client axios con interceptor
+import api from '../services/axios';
 import { useAuth } from '../context/AuthContext';
 
 const AdminGameList = () => {

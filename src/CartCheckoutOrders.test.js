@@ -4,9 +4,9 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Orders from './pages/Orders';
 import '@testing-library/jest-dom';
-import api from './services/apis'; // usato per Cart e Checkout
+import api from './services/apis'; 
 
-// ✅ Mock del contesto
+
 jest.mock('./context/CartContext', () => ({
   useCart: () => ({
     cart: [
@@ -30,7 +30,7 @@ jest.mock('./context/AuthContext', () => ({
   }),
 }));
 
-// ✅ Mock dell'API
+
 jest.mock('./services/apis', () => ({
   post: jest.fn(),
 }));
@@ -39,7 +39,7 @@ jest.mock('./services/axios', () => ({
   get: jest.fn(),
 }));
 
-// ✅ Mock di alert e location.href
+
 beforeAll(() => {
   jest.spyOn(window, 'alert').mockImplementation(() => {});
   delete window.location;
@@ -54,7 +54,7 @@ describe('Cart component', () => {
   test('renderizza correttamente i giochi nel carrello e il totale', () => {
     render(<Cart />);
     expect(screen.getByText(/Test Game/i)).toBeInTheDocument();
-    expect(screen.getByText(/Totale: € 90.00/i)).toBeInTheDocument(); // (50 - 10%) * 2
+    expect(screen.getByText(/Totale: € 90.00/i)).toBeInTheDocument(); 
   });
 
   test('invoca l\'API di checkout al click sul pulsante', async () => {

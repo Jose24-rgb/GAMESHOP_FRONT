@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import api from '../services/apis'; // usa l'istanza centralizzata
+import api from '../services/apis';
 
 function VerifyEmail() {
   const [searchParams] = useSearchParams();
