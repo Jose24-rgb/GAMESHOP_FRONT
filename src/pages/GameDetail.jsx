@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import api from '../services/axios';
+import api from '../services/apis';
 import { useAuth } from '../context/AuthContext';
 import './GameDetail.css';
 
