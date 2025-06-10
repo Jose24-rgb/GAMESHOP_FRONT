@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import axios from '../services/apis';
+import api from '../services/apis';  // Usa la tua istanza axios con baseURL
 import { useCart } from '../context/CartContext';
 import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import Filters from '../components/Filters';
@@ -32,13 +32,11 @@ const Home = () => {
       .join('&');
   };
 
- 
   useEffect(() => {
     if (searchQuery || location.state?.resetPage) {
       setCurrentPage(1);
     }
   }, [searchQuery, location.state]);
-
 
   useEffect(() => {
     if (location.state?.resetPage) {
@@ -51,7 +49,8 @@ const Home = () => {
       setLoading(true);
       try {
         const query = buildQuery({ ...filters, page: currentPage, limit: 9 });
-        const res = await axios.get(`/games?${query}`);
+        console.log('Chiamata API a:', `${process.env.REACT_APP_API_URL}/games?${query}`);
+        const res = await api.get(`/games?${query}`);
         setGames(res.data.games);
         setTotalPages(res.data.totalPages);
       } catch (err) {
@@ -68,7 +67,7 @@ const Home = () => {
     const fetchPurchased = async () => {
       if (!user?.id) return;
       try {
-        const res = await axios.get(`/orders/${user.id}`);
+        const res = await api.get(`/orders/${user.id}`);
         const ids = res.data.flatMap(order =>
           order.games
             .filter(g => g.gameId && typeof g.gameId === 'object')
@@ -95,7 +94,7 @@ const Home = () => {
   const handleDelete = async (id) => {
     if (!window.confirm('Sei sicuro di voler eliminare questo gioco?')) return;
     try {
-      await axios.delete(`/games/${id}`);
+      await api.delete(`/games/${id}`);
       setGames(prev => prev.filter(g => g._id !== id));
     } catch (err) {
       alert('Errore durante l\'eliminazione');
@@ -151,7 +150,7 @@ const Home = () => {
             const isDisabled = inCartQty >= rawStock;
             const shouldDisableButton = inCartQty > 0 || isDisabled;
 
-            const hasPurchased = purchasedGames.includes(game._id); // ✅
+            const hasPurchased = purchasedGames.includes(game._id);
 
             return (
               <div className="col-12 col-sm-6 col-md-4 mb-4 d-flex justify-content-center" key={game._id}>
@@ -267,6 +266,7 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
 
