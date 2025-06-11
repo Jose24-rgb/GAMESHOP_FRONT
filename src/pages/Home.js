@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import api from '../services/apis';  // Usa la tua istanza axios con baseURL
+import api from '../services/apis';  // Usa la tua istanza axios con baseURL
 import { useCart } from '../context/CartContext';
 import { Link, useNavigate, useSearchParams, useLocation } from 'react-router-dom';
 import Filters from '../components/Filters';
@@ -49,8 +49,9 @@ const Home = () => {
       setLoading(true);
       try {
         const query = buildQuery({ ...filters, page: currentPage, limit: 9 });
-        console.log('Chiamata API a:', `${process.env.REACT_APP_API_URL}/games?${query}`);
-        const res = await api.get(`/games?${query}`);
+        // RIGA MODIFICATA/RIMOSSA: Questa riga causava l'errore "process is not defined"
+        // console.log('Chiamata API a:', `${process.env.REACT_APP_API_URL}/games?${query}`);
+        const res = await api.get(`/games?${query}`); // Questo utilizzerà la baseURL correttamente configurata in apis.js
         setGames(res.data.games);
         setTotalPages(res.data.totalPages);
       } catch (err) {
@@ -266,6 +267,7 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
 
