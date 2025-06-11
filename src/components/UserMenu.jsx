@@ -23,9 +23,12 @@ const UserMenu = ({ avatarLetter, menuOpen, setMenuOpen, user, handleLogout, id,
 
   const renderAvatar = () => {
     if (user?.profilePic) {
+      // CORREZIONE QUI: Usa REACT_APP_API_URL per il caricamento dell'immagine del profilo
+      // Assicurati che REACT_APP_API_URL sia definito nelle variabili d'ambiente del tuo frontend (es. Netlify)
+      const backendBaseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
       return (
         <img
-          src={`http://localhost:5000${user.profilePic}?t=${Date.now()}`}
+          src={`${backendBaseUrl}${user.profilePic}?t=${Date.now()}`}
           alt="Profilo"
           style={{
             width: '40px',
@@ -56,7 +59,7 @@ const UserMenu = ({ avatarLetter, menuOpen, setMenuOpen, user, handleLogout, id,
     } else {
       return (
         <img
-          src="/icone/User Icona.png"
+          src="/icone/User Icona.png" // Questa immagine è servita direttamente dal frontend statico
           alt="Icona utente"
           style={{
             width: '40px',
