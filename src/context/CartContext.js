@@ -7,20 +7,20 @@ export const CartProvider = ({ children }) => {
   const { user } = useAuth();
   const [cart, setCart] = useState([]);
 
-  // Carica il carrello dal localStorage quando l'utente cambia o al primo render
+
   useEffect(() => {
-    // Log per vedere quando e quale utente viene rilevato dal CartContext
+   
     console.log("CartContext useEffect: Rilevato cambiamento utente a:", user); 
 
     if (user?.id) {
       console.log("CartContext useEffect: Tentativo di caricare carrello per ID utente:", user.id);
       const storedCart = localStorage.getItem(`cart_${user.id}`);
-      let parsedCart = []; // Inizializza come array vuoto
+      let parsedCart = []; 
 
       try {
-        if (storedCart) { // Se c'è qualcosa nel localStorage
+        if (storedCart) {
           const tempParsed = JSON.parse(storedCart);
-          // Verifica che il valore parsato sia effettivamente un array
+        
           if (Array.isArray(tempParsed)) {
             parsedCart = tempParsed;
             console.log("CartContext useEffect: Carrello caricato:", parsedCart);
@@ -36,22 +36,21 @@ export const CartProvider = ({ children }) => {
       setCart(parsedCart);
     } else {
       console.log("CartContext useEffect: Utente non loggato, svuoto il carrello.");
-      setCart([]); // Se l'utente non è loggato, il carrello è vuoto
+      setCart([]); 
     }
-  }, [user]); // Dipende dall'oggetto utente fornitore da useAuth()
+  }, [user]); 
 
-  // Salva il carrello nel localStorage ogni volta che il carrello o l'utente cambiano
+
   useEffect(() => {
     if (user?.id) {
       console.log("CartContext useEffect: Salvataggio carrello per ID utente:", user.id, "Carrello:", cart);
       localStorage.setItem(`cart_${user.id}`, JSON.stringify(cart)); 
     }
-  }, [cart, user]); // Dipende dal carrello e dall'utente
+  }, [cart, user]);
 
   const addToCart = (game) => {
     setCart(prev => {
-      // Prev è garantito essere un array grazie alla logica di useEffect sopra
-      // CORREZIONE QUI: da game._._id a game._id
+    
       const existing = prev.find(g => g._id === game._id); 
 
       const stock = typeof game.stock === 'number'

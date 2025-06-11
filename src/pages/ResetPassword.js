@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import api from '../services/apis'; // Già corretto: usa 'api'
+import api from '../services/apis'; 
 
 function ResetPassword() {
   const [searchParams] = useSearchParams();
@@ -29,7 +29,7 @@ function ResetPassword() {
     e.preventDefault();
     setMessage('');
     try {
-      // Già corretto: usa 'api.post' con il percorso relativo '/auth/reset-password'
+     
       await api.post('/auth/reset-password', {
         email,
         token,

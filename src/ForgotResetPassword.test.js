@@ -3,23 +3,20 @@ import userEvent from '@testing-library/user-event';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import '@testing-library/jest-dom';
-import api from './services/apis'; // Importa l'istanza 'api' che usi nell'app
-// Rimosso: import axios from './services/axios'; // Questa riga causa l'errore
+import api from './services/apis';
+
 
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
 
-// Mock per l'istanza 'api' che utilizzi per tutte le chiamate API
+
 jest.mock('./services/apis', () => ({
   post: jest.fn(),
-  get: jest.fn(), // Aggiunto se per caso 'api.get' venisse usato in futuro
-  put: jest.fn(), // Aggiunto se per caso 'api.put' venisse usato in futuro
-  delete: jest.fn(), // Aggiunto se per caso 'api.delete' venisse usato in futuro
+  get: jest.fn(), 
+  put: jest.fn(), 
+  delete: jest.fn(),
 }));
 
-// Rimosso il mock di './services/axios' che causava l'errore
-// jest.mock('./services/axios', () => ({
-//   post: jest.fn(),
-// }));
+
 
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => {
@@ -38,7 +35,7 @@ beforeEach(() => {
 
 describe('ForgotPassword component', () => {
   test('invia email e mostra messaggio di successo', async () => {
-    api.post.mockResolvedValue({}); // Usa api.post
+    api.post.mockResolvedValue({});
 
     render(<ForgotPassword />);
 
@@ -46,7 +43,7 @@ describe('ForgotPassword component', () => {
     await userEvent.click(screen.getByRole('button', { name: /invia/i }));
 
     await waitFor(() => {
-      expect(api.post).toHaveBeenCalledWith('/auth/request-reset', { // Usa api.post
+      expect(api.post).toHaveBeenCalledWith('/auth/request-reset', { 
         email: 'user@example.com',
       });
       expect(screen.getByText(/email inviata/i)).toBeInTheDocument();
@@ -54,7 +51,7 @@ describe('ForgotPassword component', () => {
   });
 
   test('gestisce errore API', async () => {
-    api.post.mockRejectedValue({ response: { data: { error: 'Email non trovata' } } }); // Usa api.post
+    api.post.mockRejectedValue({ response: { data: { error: 'Email non trovata' } } }); 
 
     render(<ForgotPassword />);
     await userEvent.type(screen.getByPlaceholderText(/email/i), 'fail@example.com');
@@ -83,7 +80,7 @@ describe('ResetPassword component', () => {
   });
 
   test('reimposta la password correttamente', async () => {
-    api.post.mockResolvedValue({}); // CORREZIONE QUI: Usa api.post, non axios.post
+    api.post.mockResolvedValue({}); 
 
     renderWithParams('?email=test@example.com&token=123abc');
 
@@ -94,7 +91,7 @@ describe('ResetPassword component', () => {
     });
 
     await waitFor(() => {
-      expect(api.post).toHaveBeenCalledWith('/auth/reset-password', { // CORREZIONE QUI: Usa api.post
+      expect(api.post).toHaveBeenCalledWith('/auth/reset-password', { 
         email: 'test@example.com',
         token: '123abc',
         newPassword: 'newpass123',
@@ -108,7 +105,7 @@ describe('ResetPassword component', () => {
   });
 
   test('gestisce errore durante il reset', async () => {
-    api.post.mockRejectedValue({ response: { data: { error: 'Token scaduto' } } }); // CORREZIONE QUI: Usa api.post
+    api.post.mockRejectedValue({ response: { data: { error: 'Token scaduto' } } });
 
     renderWithParams('?email=test@example.com&token=expiredtoken');
 

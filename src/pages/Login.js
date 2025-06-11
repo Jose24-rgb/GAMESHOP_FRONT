@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import api from '../services/apis'; // MODIFICATO: Importa l'istanza 'api' da apis.js
+import api from '../services/apis'; 
 import { useAuth } from '../context/AuthContext';
 
 function Login() {
@@ -12,8 +12,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // MODIFICATO: Usa 'api.post' con il percorso relativo.
-      // La baseURL in apis.js si occuperà di aggiungere il prefisso corretto.
+     
       const res = await api.post('/auth/login', {
         email,
         password,

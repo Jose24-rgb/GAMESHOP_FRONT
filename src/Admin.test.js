@@ -4,15 +4,15 @@ import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import AdminGameList from './pages/AdminGameList';
 import AdminCreateGame from './pages/AdminCreateGame';
 import AdminEditGame from './pages/AdminEditGame';
-import api from './services/apis'; // Importa l'istanza 'api' correttamente
+import api from './services/apis';
 import { useAuth } from './context/AuthContext';
 
-// Mock per l'istanza 'api'
+
 jest.mock('./services/apis', () => ({
   post: jest.fn(),
   put: jest.fn(),
   delete: jest.fn(),
-  get: jest.fn() // Assicurati che 'get' sia mockato
+  get: jest.fn() 
 }));
 
 jest.mock('./context/AuthContext', () => ({
@@ -30,7 +30,7 @@ beforeAll(() => {
     console.warn(msg);
   });
 
-  // Mock globale per window.alert e window.confirm (se non già fatto altrove)
+ 
   window.alert = jest.fn();
   window.confirm = jest.fn(() => true);
 });
@@ -53,7 +53,7 @@ describe('AdminGameList component', () => {
   test('mostra lista giochi per admin', async () => {
     useAuth.mockReturnValue({ user: { isAdmin: true } });
 
-    api.get.mockResolvedValue({ // Usa api.get
+    api.get.mockResolvedValue({ 
       data: [
         {
           _id: '1',
@@ -76,8 +76,7 @@ describe('AdminGameList component', () => {
     );
 
     await waitFor(() => {
-      // CORREZIONE QUI: L'expect deve corrispondere alla chiamata reale nel componente
-      // Il componente chiama api.get('/games') senza params
+     
       expect(api.get).toHaveBeenCalledWith('/games'); 
       expect(screen.getByText(/test game/i)).toBeInTheDocument();
     }, { timeout: 3000 });
@@ -146,8 +145,8 @@ describe('AdminEditGame component', () => {
     );
 
     await waitFor(() => {
-      // Verifica che la chiamata per ottenere i dettagli del gioco sia corretta
-      expect(api.get).toHaveBeenCalledWith('/games/1'); // Assumendo che l'API per i dettagli del gioco sia /games/:id
+     
+      expect(api.get).toHaveBeenCalledWith('/games/1');
       expect(screen.getByDisplayValue(/game edit/i)).toBeInTheDocument();
     }, { timeout: 3000 });
   });

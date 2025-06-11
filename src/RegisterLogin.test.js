@@ -7,7 +7,7 @@ import { AuthProvider } from './context/AuthContext';
 import '@testing-library/jest-dom';
 import api from './services/apis';
 
-// Mock per l'istanza 'api' che utilizziamo per tutte le chiamate API
+
 jest.mock('./services/apis', () => ({
   post: jest.fn(),
   get: jest.fn(),
@@ -63,15 +63,15 @@ function renderWithProviders(ui, route = '/login') {
 }
 
 beforeAll(() => {
-  // Sopprimi i warning specifici di React Router v7 per i test
+  
   jest.spyOn(console, 'warn').mockImplementation((msg) => {
     if (
       msg.includes('React Router Future Flag Warning') ||
       msg.includes('Relative route resolution within Splat routes')
     ) {
-      return; // Ignora questi warning
+      return; 
     }
-    console.warn(msg); // Logga altri warning
+    console.warn(msg); 
   });
 
   jest.spyOn(window, 'alert').mockImplementation(() => {});
@@ -82,7 +82,7 @@ afterEach(() => {
 });
 
 afterAll(() => {
-  // Ripristina console.warn dopo tutti i test per non influenzare altri contesti
+  
   console.warn.mockRestore(); 
 });
 
@@ -99,7 +99,7 @@ describe('Register component', () => {
   test('invio corretto dei dati', async () => {
     api.post.mockResolvedValue({
       data: {
-        message: 'Registrazione riuscita! Controlla la tua email per la verifica.', // Mocka la risposta del backend per corrispondere al messaggio reale
+        message: 'Registrazione riuscita! Controlla la tua email per la verifica.', 
         userId: 'someUserId'
       }
     }); 
@@ -120,7 +120,7 @@ describe('Register component', () => {
       }
     );
 
-    // CORREZIONE QUI: Aggiorna l'expect per corrispondere al messaggio COMPLETO REALE
+
     expect(window.alert).toHaveBeenCalledWith('Registrazione riuscita! Controlla la tua email per la verifica.');
     expect(mockNavigate).toHaveBeenCalledWith('/login');
   });
@@ -178,8 +178,7 @@ describe('Login component', () => {
   test('mostra errore se si invia senza compilare', async () => {
     renderWithProviders(<Login />);
     await userEvent.click(screen.getByRole('button', { name: /login/i }));
-    // Questo expect potrebbe non essere chiamato se la validazione HTML5 impedisce l'invio.
-    // Si aspetta che window.alert venga chiamato per un errore.
+  
     expect(window.alert).toHaveBeenCalled(); 
   });
 });
