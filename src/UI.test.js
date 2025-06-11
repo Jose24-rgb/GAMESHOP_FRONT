@@ -1,3 +1,15 @@
+import { render, screen, waitFor, fireEvent } from '@testing-library/react';
+import { MemoryRouter, createMemoryRouter, RouterProvider } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Filters from './components/Filters';
+import GameDetail from './pages/GameDetail';
+import { useAuth } from './context/AuthContext';
+import { useCart } from './context/CartContext';
+import api from './services/apis'; // CORREZIONE QUI: Importa l'istanza 'api' dal file corretto
+
+// Rimosso: jest.mock('./services/axios'); // Questa riga causa l'errore
+
+// Mock per react-router-dom
 const mockNavigate = jest.fn();
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -6,26 +18,24 @@ jest.mock('react-router-dom', () => ({
   useSearchParams: () => [new URLSearchParams(''), jest.fn()],
 }));
 
-
+// Mocks per i contesti
 jest.mock('./context/AuthContext', () => ({ useAuth: jest.fn() }));
 jest.mock('./context/CartContext', () => ({ useCart: jest.fn() }));
-jest.mock('./services/axios');
+
+// Mock per il componente UserMenu
 jest.mock('./components/UserMenu', () => () => <div data-testid="mock-user-menu">Mocked UserMenu</div>);
 
-
-import { render, screen, waitFor, fireEvent } from '@testing-library/react';
-import { MemoryRouter, createMemoryRouter, RouterProvider } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Filters from './components/Filters';
-import GameDetail from './pages/GameDetail';
-import { useAuth } from './context/AuthContext';
-import { useCart } from './context/CartContext';
-import api from './services/axios';
+// Mock per l'istanza 'api' (assicurati che sia mockata correttamente per tutti i metodi usati)
+jest.mock('./services/apis', () => ({
+  get: jest.fn(),
+  post: jest.fn(),
+  put: jest.fn(),
+  delete: jest.fn(),
+}));
 
 beforeEach(() => {
   jest.clearAllMocks();
 });
-
 
 describe('Navbar', () => {
   test('renders navbar with cart count and user menu', () => {
@@ -39,10 +49,10 @@ describe('Navbar', () => {
     );
 
     const cartIcons = screen.getAllByLabelText(/vai al carrello/i);
-    expect(cartIcons).toHaveLength(2); 
+    expect(cartIcons).toHaveLength(2);
 
     const searchInputs = screen.getAllByPlaceholderText(/cerca gioco/i);
-    expect(searchInputs).toHaveLength(2); 
+    expect(searchInputs).toHaveLength(2);
 
     expect(screen.getByText('🎮 GAMESHOP')).toBeInTheDocument();
 
@@ -50,8 +60,6 @@ describe('Navbar', () => {
     expect(userMenus).toHaveLength(2);
   });
 });
-
-
 
 describe('Filters', () => {
   test('calls onFilterChange when input changes', () => {
@@ -80,7 +88,6 @@ describe('Filters', () => {
   });
 });
 
-
 describe('GameDetail', () => {
   test('renders loading state, then game info', async () => {
     useAuth.mockReturnValue({ user: { id: '123', isAdmin: false } });
@@ -101,6 +108,8 @@ describe('GameDetail', () => {
       if (url.startsWith('/reviews/')) {
         return Promise.resolve({ data: [] });
       }
+      // Se ci sono altre chiamate 'api.get', aggiungi i mock qui
+      return Promise.reject(new Error(`Unhandled API GET call: ${url}`));
     });
 
     const router = createMemoryRouter(
@@ -126,3 +135,4 @@ describe('GameDetail', () => {
     });
   });
 });
+
