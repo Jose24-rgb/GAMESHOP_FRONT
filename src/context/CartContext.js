@@ -4,7 +4,7 @@ import { useAuth } from './AuthContext';
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const { user } = useAuth(); // Questo 'user' è quello che stiamo tracciando
+  const { user } = useAuth();
   const [cart, setCart] = useState([]);
 
   // Carica il carrello dal localStorage quando l'utente cambia o al primo render
@@ -51,7 +51,8 @@ export const CartProvider = ({ children }) => {
   const addToCart = (game) => {
     setCart(prev => {
       // Prev è garantito essere un array grazie alla logica di useEffect sopra
-      const existing = prev.find(g => g._id === game._._id); // Correzione qui: game._._id -> game._id
+      // CORREZIONE QUI: da game._._id a game._id
+      const existing = prev.find(g => g._id === game._id); 
 
       const stock = typeof game.stock === 'number'
         ? game.stock
@@ -92,6 +93,7 @@ export const CartProvider = ({ children }) => {
 };
 
 export const useCart = () => useContext(CartContext);
+
 
 
 
