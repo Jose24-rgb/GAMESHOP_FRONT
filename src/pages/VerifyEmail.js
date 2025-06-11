@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import api from '../services/apis';
+import api from '../services/apis'; // Già corretto: usa 'api'
 
 function VerifyEmail() {
   const [searchParams] = useSearchParams();
@@ -18,6 +18,7 @@ function VerifyEmail() {
 
     const verify = async () => {
       try {
+        // Già corretto: usa 'api.get' con il percorso relativo '/auth/verify-email'
         const res = await api.get('/auth/verify-email', {
           params: { email, token }
         });

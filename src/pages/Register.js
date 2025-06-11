@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../services/apis'; // MODIFICATO: Importa l'istanza 'api' da apis.js
 
 function Register() {
   const [form, setForm] = useState({ username: '', email: '', password: '' });
@@ -13,8 +13,10 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, form);
-      alert('Registrazione riuscita!');
+      // MODIFICATO: Usa 'api.post' con il percorso relativo.
+      // La baseURL in apis.js si occuperà di aggiungere il prefisso corretto.
+      await api.post('/auth/register', form);
+      alert('Registrazione riuscita! Controlla la tua email per la verifica.');
       navigate('/login');
     } catch (err) {
       alert(err.response?.data?.error || 'Errore registrazione');

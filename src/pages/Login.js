@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/apis'; // MODIFICATO: Importa l'istanza 'api' da apis.js
 import { useAuth } from '../context/AuthContext';
 
 function Login() {
@@ -12,12 +12,13 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
+      // MODIFICATO: Usa 'api.post' con il percorso relativo.
+      // La baseURL in apis.js si occuperà di aggiungere il prefisso corretto.
+      const res = await api.post('/auth/login', {
         email,
         password,
       });
 
-     
       login({
         user: res.data.user,
         token: res.data.token,
@@ -70,5 +71,6 @@ function Login() {
 }
 
 export default Login;
+
 
 
