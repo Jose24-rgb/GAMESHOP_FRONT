@@ -1,0 +1,8 @@
+# Regola per reindirizzare il link di reset password se contiene "/reset/"
+/reset/reset-password   /reset-password   301!
+
+# Regola per reindirizzare il link di verifica email se contiene "/reset/" (per sicurezza)
+/reset/verify-email     /verify-email     301!
+
+# Regola per le Single Page Applications (assicura che tutte le rotte siano gestite da index.html)
+/* /index.html   200
