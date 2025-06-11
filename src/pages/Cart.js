@@ -26,6 +26,7 @@ function Cart() {
 
       const res = await api.post('/checkout/create-checkout-session', {
         userId: user.id,
+        email: user.email,
         games: cart,
       });
 

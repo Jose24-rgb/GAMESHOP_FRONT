@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'; // CORRETTO: rimosso '=>'
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/apis';
@@ -31,4 +31,3 @@ const Checkout = () => {
 };
 
 export default Checkout;
-
