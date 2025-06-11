@@ -7,25 +7,44 @@ export const CartProvider = ({ children }) => {
   const { user } = useAuth();
   const [cart, setCart] = useState([]);
 
-  
+  // Carica il carrello dal localStorage quando l'utente cambia o al primo render
   useEffect(() => {
     if (user?.id) {
       const storedCart = localStorage.getItem(`cart_${user.id}`);
-      setCart(storedCart ? JSON.parse(storedCart) : []);
+      let parsedCart = []; // Inizializza come array vuoto
+
+      try {
+        if (storedCart) { // Se c'è qualcosa nel localStorage
+          const tempParsed = JSON.parse(storedCart);
+          // Verifica che il valore parsato sia effettivamente un array
+          if (Array.isArray(tempParsed)) {
+            parsedCart = tempParsed;
+          } else {
+            console.warn("Dati carrello non validi nel localStorage, reset a array vuoto:", storedCart);
+            // Non settiamo 'parsedCart' qui per mantenere l'array vuoto di default
+          }
+        }
+      } catch (e) {
+        console.error("Errore nel parsing del carrello dal localStorage, reset a array vuoto:", e);
+        // Non settiamo 'parsedCart' qui per mantenere l'array vuoto di default
+      }
+      setCart(parsedCart);
     } else {
-      setCart([]);
+      setCart([]); // Se l'utente non è loggato, il carrello è vuoto
     }
-  }, [user]);
+  }, [user]); // Dipende dall'oggetto utente
 
-
+  // Salva il carrello nel localStorage ogni volta che il carrello o l'utente cambiano
   useEffect(() => {
     if (user?.id) {
-      localStorage.setItem(`cart_${user.id}`, JSON.stringify(cart));
+      // Salva come stringa JSON dell'array
+      localStorage.setItem(`cart_${user.id}`, JSON.stringify(cart)); 
     }
-  }, [cart, user]);
+  }, [cart, user]); // Dipende dal carrello e dall'utente
 
   const addToCart = (game) => {
     setCart(prev => {
+      // Prev è garantito essere un array grazie alla logica di useEffect sopra
       const existing = prev.find(g => g._id === game._id);
 
       const stock = typeof game.stock === 'number'
@@ -67,7 +86,6 @@ export const CartProvider = ({ children }) => {
 };
 
 export const useCart = () => useContext(CartContext);
-
 
 
 
