@@ -23,12 +23,20 @@ const UserMenu = ({ avatarLetter, menuOpen, setMenuOpen, user, handleLogout, id,
 
   const renderAvatar = () => {
     if (user?.profilePic) {
-      
-      
-      const backendBaseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+      let imageUrl = user.profilePic;
+
+     
+      if (!imageUrl.startsWith('http://') && !imageUrl.startsWith('https://')) {
+        const backendBaseUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+        imageUrl = `${backendBaseUrl}${imageUrl}`;
+      }
+
+     
+      const finalImageUrl = `${imageUrl}?t=${Date.now()}`;
+
       return (
         <img
-          src={`${backendBaseUrl}${user.profilePic}?t=${Date.now()}`}
+          src={finalImageUrl}
           alt="Profilo"
           style={{
             width: '40px',
@@ -128,6 +136,7 @@ const UserMenu = ({ avatarLetter, menuOpen, setMenuOpen, user, handleLogout, id,
 };
 
 export default UserMenu;
+
 
 
 
