@@ -48,14 +48,15 @@ const Config = () => {
 
       if (imageSrc && croppedAreaPixels) {
         const croppedImage = await getCroppedImg(imageSrc, croppedAreaPixels, uuidv4());
-        formData.append('profilePic', croppedImage);
+        formData.append('profilePic', croppedImage); 
       }
 
+   
       const res = await api.put('/auth/update-profile', formData);
-      updateUser(res.data.user);
+      updateUser(res.data.user); 
       setMessage('✅ Profilo aggiornato con successo!');
 
-      
+     
       setImageSrc('');
       setCrop({ x: 0, y: 0 });
       setZoom(1);
@@ -66,6 +67,10 @@ const Config = () => {
     } catch (err) {
       console.error(err);
       setMessage('❌ Errore durante l\'aggiornamento.');
+      
+      if (err.response && err.response.data && err.response.data.error) {
+          setMessage(`❌ Errore: ${err.response.data.error}`);
+      }
     }
   };
 
@@ -88,6 +93,7 @@ const Config = () => {
           <label className="form-label">Carica nuova immagine profilo</label>
           <input
             type="file"
+            name="profilePic" 
             className="form-control"
             accept="image/*"
             onChange={handleFileChange}
